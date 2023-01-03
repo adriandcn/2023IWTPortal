@@ -1,0 +1,16 @@
+<?php
+
+return [
+	'faq1' => '¿Dónde están almacenados los datos de mi tarjeta?',
+	'Res1' => 'Por razones de seguridad nosotros no procesamos los pagos directamente. Para los pagos con tarjeta de crédito y de débito, usamos el servicio de nuestra entidad bancaria cuyo procesamiento se hace directamente en sus servidores El pago con tarjeta a través de la web es seguro, ya que los datos se transmiten de forma encriptada SSL. Estos servicios son los encargados de realizar el cobro de su tarjeta. Nosotros como iWaNaTrip no procesamos ni almacenamos los números de su tarjeta de crédito ni ninguna información proporcionada para el pago',
+	'faq2' => '¿Qué tipo de tarjetas puedo usar?',
+    'Res2' => 'Actualmente puede utilizar tarjetas de crédito VISA, las tarjetas VISA de débito, tarjetas VISA Electron, tarjetas VISA Delta, tarjetas de débito MasterCard y tarjetas de crédito MasterCard.',
+	'faq3' => '¿Por qué mi pago / tarjeta de crédito no es aceptado?',
+	'Res3' => 'Hay varias razones por las cuales su tarjeta no puede funcionar en nuestra página web. La más común es porque el banco no nos permite procesar su tarjeta. En este caso usted deberá contactar con su banco para saber por qué no permiten la transacción. Nosotros también podemos limitar el número de intentos de pago que se pueden hacer con su tarjeta. Intentarlo de nuevo en unos días puede resolver este problema.',
+	'faq4' => '¿Está segura la información de mi cuenta?',
+	'Res4' => 'Toda la información confidencial la guardan nuestros procesadores de pagos, que mantienen la seguridad de los datos bajo los requisitos más estrictos de Visa y Mastercard e incluye el cumplimiento del PCI. Los términos y condiciones y la política de privacidad, que han sido publicadas en la página web y que usted acordó cuando se registró, cubren todas nuestras políticas con respecto a su información personal. Esto incluye que nosotros no divulgaremos ninguno de sus datos y sólo utilizaremos su dirección de correo electrónico para ponernos en contacto con usted acerca de los servicios de Ezetop (Ding*).',
+	'faq5' => '¿Van a cobrarme de nuevo en el futuro por algo que yo no acordé?',
+	'Res5' => 'Por supuesto que no. Nosotros sólo cobramos en el momento de la transacción (después de haber introducido los datos de su tarjeta). No hay seguimiento de los cargos recurrentes o de cualquier otro tipo. Antes de que introduzca sus detalles nosotros le mostraremos la cantidad total que pagará. Este es el único cargo que se cobrará.',
+	'faq6' => '¿Que tan seguro es iWaNaTrip?',
+	'Res6' => 'Los datos de todas las páginas sensibles se comunican usando Secure Sockets Layer (SSL).Esto incluye las páginas relacionadas con nombre de usuario y tarjeta de crédito. Los usuarios pueden consultar su dirección de navegador web o la barra de ubicación para determinar si la página que se accede está cifrada mediante SSL. Tenemos un equipo altamente capacitado para garantizar que todas las revisiones de seguridad, actualizaciones de productos, los problemas de vulnerabilidad sean manejados por nuestros servidores.'
+];

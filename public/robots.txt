@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /tokenDc$ripPromo/*
+Disallow: /getLikesA/*
+Disallow: /getCercanosIntern/*
+Disallow: /tokenDc$ripEvent/*
+Disallow: /getReviews/*
+Disallow: /getCatalogosServicios/*
+Disallow: /getSearchCatalogosServiciosIntern/*
+

@@ -1,0 +1,2 @@
+[19-Jan-2018 23:55:11 UTC] PHP Fatal error:  PhpParser\Parser\Multiple cannot implement PhpParser\Parser - it is not an interface in /home/adrianic8/public_html/vendor/nikic/php-parser/lib/PhpParser/Parser/Multiple.php on line 8
+[26-Jul-2018 01:13:28 UTC] PHP Fatal error:  PhpParser\Parser\Multiple cannot implement PhpParser\Parser - it is not an interface in /home/adrianic8/public_html/vendor/nikic/php-parser/lib/PhpParser/Parser/Multiple.php on line 8

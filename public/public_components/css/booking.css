@@ -1,0 +1,22 @@
+.cabeceraTabla{
+	font-size:.8rem !important;
+	color:#fff !important;
+	font-style:italic !important;
+	text-align:center !important;
+	background:#34495e !important;
+}
+
+.smallThumb img {
+    display: block;
+    width: 100%;
+    height: 10vh !important;
+}
+
+.sinBorde{
+    border-left: 1px solid transparent !important;
+    border-right: 0px !important;
+}
+
+.sinBordeCabecera{
+    border: 1px solid #34495e !important;
+}

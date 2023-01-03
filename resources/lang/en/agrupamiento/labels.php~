@@ -1,0 +1,24 @@
+<?php
+
+return [
+	'label1' => 'List of Tours',
+	'label2' => 'Name Tour',
+	'label3' => 'Price From',
+        'label3-1' => 'Price Until',
+	'label4' => 'Discount',
+	'label5' => 'Available',
+	'label6' => 'Reviews',
+	'label7' => 'Booking',
+	'label8' => 'Go',
+	'label9' => 'Thank you for your purchase and for using the Booking System',
+	'label10' => 'Your reservation has been confirmed!',
+	'label11' => 'Thanks for Preferring!',
+      	'label12' => 'CLient Name',
+    	'label13' => 'Reserved Service',
+    	'label14' => 'Client Email',
+    	'label15' => 'Reserve From',
+    	'label16' => 'Reserve Until',
+        'label17' => 'Client Phone',
+        'label18' => 'Number of Adults',
+        
+];

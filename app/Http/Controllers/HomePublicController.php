@@ -3879,6 +3879,90 @@ class HomePublicController extends Controller
         PDF::loadHTML($textodocumento)->save('pdf/Reservation-' . $nombreDespliegue . '-' . $infoPago[0]->id . '-en.pdf');
     }
 
+    public function confirmacionPayphone(
+        Request $request,
+        Guard $auth,
+        PublicServiceRepository $gestion,
+        ServiciosOperadorRepository $gestion1
+    ) {
+        dd($request);
+        //PARAMETROS ENVIADOS POR POST PAGOMEDIOS
+        // {
+        //     "authorization_result": "00",
+        //     "customer_id": "1757146806",
+        //     "order_id": "1184",
+        //     "order_status": "Autorizado",
+        //     "purchase_operation_number": "877953883",
+        //     "card_brand": "VISA",
+        //     "card_number": "485951******0036",
+        //     "card_type": "CREDIT"
+        // }
+
+        // $request->authorization_result = "00";
+        // $request->customer_id = "1757146806";
+        // $request->order_id = "427";
+        // $request->order_status = "Autorizado";
+        // $request->purchase_operation_number = "877953883";
+        // $request->card_brand = "VISA";
+        // $request->card_number = "485951******0036";
+        // $request->card_type = "CREDIT";
+
+        //FIN PARAMETROS
+        // valores $request->authorization_result
+        // 00 Indica que la transacci�n ha sido	autorizada
+        // 01 Indica que la transacci�n	ha sido denegada en el Banco Emisor
+        // 05 Indica que la transacci�n	ha sido rechazada
+
+        if ($request->authorization_result == "00") {
+
+            //OBTENGO LA INFORMACION DE LA RESERVA, PAGO Y USUARIO OPERADOR
+            $infoReservas = $gestion->getReserva($request->order_id);
+            $infoPago = $gestion->getInfoPagoReserva($request->order_id);
+            $searchUsuServ = $gestion->getUsuarioServicio($infoReservas[0]->calendar_id);
+            $idUsuarioServicio = $searchUsuServ[0]->id_usuario_servicio;
+            // $nombreCalendario = $infoPago[0]->nombre_calendario;
+            $buscoIdUsuarioServicio = $gestion->getIdUsuarioOperador($idUsuarioServicio);
+            $infoReserva2 = $gestion->getInfoUsuarioOperador($buscoIdUsuarioServicio[0]->id_usuario_operador);
+            $calendarGroup = $gestion->buscarIdAgrupamiento($infoReservas[0]->calendar_id);
+            $infoAgrupamiento = $gestion->getInfoAgrupamiento($calendarGroup[0]->id_agrupamiento);
+
+            //ACTUALIZO ESTADO DE RESERVA Y DEL PAGO
+            $tipo = 0;
+            $gestion->updateStatusReservaTDC($request->order_id, $tipo);
+            $gestion->updateStatusPagoReservaTDC($request->order_id, $tipo);
+
+            // TODO: DESCOMENTAR ESTAS LINEAS PARA GENERAR PDF Y ENVIAR EL CORREO PARA PRUEBAS
+            // $this->generateBookingPDFES($infoAgrupamiento, $infoReserva2, $infoPago, $infoReservas);
+            // $this->generateBookingPDFEN($infoAgrupamiento, $infoReserva2, $infoPago, $infoReservas);
+            // $urlConsulta = 'https://iwannatrip.com/consultareservacion/'.$infoReservas[0]->token_consulta;
+            // $this->dispatch(new ReservacionTDCMail($infoReservas,$urlConsulta,$infoPago,$infoReserva2));
+
+            // SE GUARDA EN LA TABLA DELIVERY BOOK PARA GESTIONAR EL ENVIO DE CORREO
+            $gestion->saveDeliveryBook($infoReservas[0]->id);
+
+            echo '/consultareservacion/' . $infoReservas[0]->token_consulta;
+            die();
+            //ME VOY A LA PAGINA PARA QUE VEA LA INFO DE LA RESERVACION
+            return redirect('/consultareservacion/' . $infoReservas[0]->token_consulta);
+        } elseif ($request->authorization_result == "01" || $request->authorization_result == "05") {
+
+            $infoReservas = $gestion->getReserva($request->order_id);
+            //ACTUALIZO ESTADO A CANCELADO DE LA RESERVA Y DEL PAGO
+            if ($request->authorization_result == "01") {
+                $tipo = 1;
+            } elseif ($request->authorization_result == "05") {
+                $tipo = 2;
+            }
+
+            $gestion->updateStatusReservaTDC($request->order_id, $tipo);
+            $gestion->updateStatusPagoReservaTDC($request->order_id, $tipo);
+
+            //ME VOY A LA PAGINA PARA QUE VEA LA INFO DE LA RESERVACION Y MUESTRO MENSAJE
+            return redirect('/errorsolicitudpago/' . $infoReservas[0]->token_consulta . '/' . $tipo);
+        }
+    }
+
+
     public function confirmacion(
         Request $request,
         Guard $auth,
